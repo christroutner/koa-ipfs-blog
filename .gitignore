@@ -60,3 +60,4 @@ docs
 .nyc_output
 coverage
 database/
+ipfs-data/
