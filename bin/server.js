@@ -8,6 +8,7 @@ const passport = require('koa-passport')
 const mount = require('koa-mount')
 const serve = require('koa-static')
 const cors = require('kcors')
+const shell = require('shelljs')
 
 const config = require('../config')
 const errorMiddleware = require('../src/middleware')
@@ -46,6 +47,12 @@ async function startServer () {
   app.use(cors({ origin: '*' }))
 
   // MIDDLEWARE END
+
+  shell.cd(`ipfs-data`)
+  // console.log(shell.pwd())
+  const hash = `QmQ3J6yb21ipeE96hYBtQVPyiZney6dqbGNHe7gN4vxMbk`
+  shell.exec(`ipfs get ${hash}`)
+  app.use(convert(mount('/blog', serve(`${process.cwd()}/${hash}`))))
 
   // app.listen(config.port, () => {
   //  console.log(`Server started on ${config.port}`)
