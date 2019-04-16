@@ -82,6 +82,8 @@ async function startServer () {
   shell.exec(`ipfs get ${hash}`)
   app.use(convert(mount('/', serve(`${process.cwd()}/${hash}`))))
 
+  // Periodically check the BCH address for published updates.
+
   // app.listen(config.port, () => {
   //  console.log(`Server started on ${config.port}`)
   // })
