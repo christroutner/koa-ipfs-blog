@@ -15,20 +15,30 @@ const BITBOX = new BITBOXSDK()
 const ADDR = config.BCHADDR
 
 class BCH {
-  constructor () {
+  constructor (hash) {
+    // By default make hash an empty string.
     this.currentHash = ''
+
+    // If user specified a hash to use, use that.
+    if (hash && hash !== '') this.currentHash = hash
   }
 
-  async checkForUpdates (app) {
+  // Checks to see if a new hash been published to the BCH network. If a new
+  // hash is detected, it returns the hash. Otherwise, it returns false.
+  async checkForUpdates () {
     const hash = await this.findHash()
 
+    // Handle initializing the server.
+    if (this.currentHash === '') this.currentHash = hash
+
+    // If new hash is detected.
     if (hash !== this.currentHash) {
-      shell.exec(`ipfs get ${hash}`)
-      shell.exec(`ipfs pin add ${hash}`)
       this.currentHash = hash
 
-      console.log(`Server updated for new content published with hash ${hash}`)
+      return hash
     }
+
+    return false
   }
 
   // Walk the transactions associated with an address until a proper IPFS hash is
