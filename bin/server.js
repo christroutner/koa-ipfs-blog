@@ -28,6 +28,8 @@ const BITBOX = new BITBOXSDK()
 const ADDR = `bitcoincash:qq34qnz6527rp2szzkull8dzrkmmrnlfuq4ua74spq`
 // const ADDR = `bitcoincash:qq34qnz6527rp2szzkull8dzrkmmrnlfuq4ua74spa`
 
+let currentHash
+
 async function startServer () {
   // Create a Koa instance.
   const app = new Koa()
@@ -73,16 +75,24 @@ async function startServer () {
     console.log(`Exiting`)
     process.exit()
   }
+  currentHash = hash
 
   console.log(`Retrieving and serving this IPFS hash: ${hash}`)
 
+  // Get the content from the IPFS network and serve it.
   shell.cd(`ipfs-data`)
   // console.log(shell.pwd())
   // const hash = `QmQ3J6yb21ipeE96hYBtQVPyiZney6dqbGNHe7gN4vxMbk`
   shell.exec(`ipfs get ${hash}`)
+  shell.exec(`ipfs pin add ${hash}`)
   app.use(convert(mount('/', serve(`${process.cwd()}/${hash}`))))
 
+  console.log(`app: ${util.inspect(app)}`)
+
   // Periodically check the BCH address for published updates.
+  setInterval(function () {
+    checkForUpdates(app)
+  }, 60000 * 0.5)
 
   // app.listen(config.port, () => {
   //  console.log(`Server started on ${config.port}`)
@@ -94,6 +104,19 @@ async function startServer () {
   return app
 }
 // startServer()
+
+async function checkForUpdates (app) {
+  const hash = await findHash()
+
+  if (hash !== currentHash) {
+    shell.exec(`ipfs get ${hash}`)
+    shell.exec(`ipfs pin add ${hash}`)
+    app.use(convert(mount('/', serve(`${process.cwd()}/${hash}`))))
+    currentHash = hash
+
+    console.log(`Server updated for new content published with hash ${hash}`)
+  }
+}
 
 // Walk the transactions associated with an address until a proper IPFS hash is
 // found. If one is not found, will return false.
