@@ -14,12 +14,20 @@ software is used to retrieve it and serve the content to users.
 * npm __^6.7.0__
 
 ## Installation
+- Clone and install dependencies:
 ```bash
 git clone https://github.com/christroutner/koa-ipfs-blog
 cd koa-ipfs-blog
 npm install
-npm start
 ```
+
+- Add your BCH address
+to [the config file](https://github.com/christroutner/koa-ipfs-blog/blob/master/config/env/common.js#L8). This
+should be the same address associated with your memo.cash profile.
+
+- Start the server:
+
+`npm start`
 
 ## License
 MIT

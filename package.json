@@ -4,7 +4,7 @@
   "description": "Koa2 boilerplate covering essentials for REST API and auth.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node restart-server.js",
     "test": "KOA_ENV=test nyc --reporter=text ./node_modules/.bin/mocha --exit",
     "lint": "eslint src/**/*.js",
     "docs": "./node_modules/.bin/apidoc -i src/ -o docs",
