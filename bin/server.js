@@ -7,7 +7,6 @@ const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const convert = require('koa-convert')
 const logger = require('koa-logger')
-const session = require('koa-generic-session')
 
 const mount = require('koa-mount')
 const serve = require('koa-static')
@@ -27,17 +26,12 @@ util.inspect.defaultOptions = { depth: 1 }
 async function startServer () {
   // Create a Koa instance.
   const app = new Koa()
-  app.keys = [config.session]
 
   // MIDDLEWARE START
 
   app.use(convert(logger()))
   app.use(bodyParser())
-  app.use(session())
   app.use(errorMiddleware())
-
-  // Used to generate the docs.
-  app.use(convert(mount('/docs', serve(`${process.cwd()}/docs`))))
 
   // Custom Middleware Modules
   const modules = require('../src/modules')
