@@ -1,4 +1,7 @@
 # koa-ipfs-blog
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/christroutner/koa-ipfs-blog.svg)](https://greenkeeper.io/)
+
 A lightweight web server that serves a blog published to IPFS.
 This project was forked from the [koa-api-boilerplate](https://github.com/christroutner/koa-api-boilerplate)
 
