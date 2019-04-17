@@ -1,16 +1,17 @@
 // import * as auth from './controller'
-const auth = require('./controller')
+const example = require('./controller')
 
 // export const baseUrl = '/auth'
-module.exports.baseUrl = '/auth'
+module.exports.baseUrl = '/example'
 
 // export default [
 module.exports.routes = [
   {
-    method: 'POST',
+    method: 'GET',
     route: '/',
     handlers: [
-      auth.authUser
+      example.get
     ]
   }
+
 ]
