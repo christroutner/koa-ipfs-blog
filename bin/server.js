@@ -7,7 +7,6 @@ const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const convert = require('koa-convert')
 const logger = require('koa-logger')
-
 const mount = require('koa-mount')
 const serve = require('koa-static')
 const cors = require('kcors')
@@ -43,7 +42,12 @@ async function startServer () {
 
   // MIDDLEWARE END
 
+  // Retrieve hash from BCH network and retrieve data from IPFS.
+
+  // Get the latest hash off the BCH network.
   const hash = await bch.findHash()
+
+  // Exit if no hash is found.
   if (!hash) {
     console.log(`Could not find IPFS hash associated with BCH address ${config.BCHADDR}`)
     console.log(`Publish an IPFS hash using the memo-push tool before running this server.`)
@@ -53,17 +57,14 @@ async function startServer () {
 
   console.log(`Retrieving and serving this IPFS hash: ${hash}`)
 
-  // Get the content from the IPFS network and serve it.
+  // Get the content from the IPFS network.
   shell.cd(`ipfs-data`)
-  // console.log(shell.pwd())
-  // const hash = `QmQ3J6yb21ipeE96hYBtQVPyiZney6dqbGNHe7gN4vxMbk`
   shell.exec(`ipfs get ${hash}`)
   shell.exec(`ipfs pin add ${hash}`)
+
+  // Mount the downloaded directory and serve it.
   app.use(convert(mount('/', serve(`${process.cwd()}/${hash}`))))
 
-  // app.listen(config.port, () => {
-  //  console.log(`Server started on ${config.port}`)
-  // })
   await app.listen(config.port)
   console.log(`Server started on ${config.port}`)
   console.log(`Access website at http://localhost:${config.port}/`)
@@ -72,8 +73,6 @@ async function startServer () {
 }
 // startServer()
 
-// export default app
-// module.exports = app
 module.exports = {
   startServer
 }
