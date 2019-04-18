@@ -15,13 +15,13 @@ services:
 # https://github.com/greenkeeperio/greenkeeper-lockfile/issues/156
 install: case $TRAVIS_BRANCH in greenkeeper*) npm i;; *) npm ci;; esac;
 
-before_install:
-  - ./install-mongo
+#before_install:
+#  - ./install-mongo
   #- npm install -g mocha
 
 # Send coverage data to Coveralls
-after_success:
-  - npm run coverage
+#after_success:
+#  - npm run coverage
 
 deploy:
   provider: script
