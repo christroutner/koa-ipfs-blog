@@ -3,6 +3,7 @@
 
 #IMAGE BUILD COMMANDS
 # ct-base-ubuntu = ubuntu 18.04 + nodejs v10 LTS
+# https://github.com/christroutner/docker-base/blob/master/Dockerfile
 FROM christroutner/ct-base-ubuntu
 MAINTAINER Chris Troutner <chris.troutner@gmail.com>
 
@@ -23,7 +24,7 @@ WORKDIR /home/safeuser
 #RUN runuser -l safeuser -c "npm config set prefix '~/.npm-global'"
 
 # Expose the port the API will be served on.
-EXPOSE 5000
+EXPOSE 3210
 
 # Switch to user account.
 USER safeuser
@@ -32,21 +33,17 @@ RUN echo 'abcd8765' | sudo -S pwd
 
 # Clone the rest.bitcoin.com repository
 WORKDIR /home/safeuser
-RUN git clone https://github.com/christroutner/koa-api-boilerplate
-RUN mv koa-api-boilerplate koa
-RUN mkdir keys
+RUN git clone https://github.com/christroutner/koa-ipfs-blog
 
 # Switch to the desired branch. `master` is usually stable,
 # and `stage` has the most up-to-date changes.
-WORKDIR /home/safeuser/koa
+WORKDIR /home/safeuser/koa-ipfs-blog
 
 # For development: switch to unstable branch
-RUN git checkout docker
+#RUN git checkout docker
 
 # Install dependencies
 RUN npm install
-
-VOLUME /home/safeuser/keys
 
 EXPOSE 3000
 
