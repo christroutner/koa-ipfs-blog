@@ -1,14 +1,17 @@
 # Start the testnet server with the command 'docker-compose up -d'
 
+ipfs:
+  image: ipfs/go-ipfs
+
+
 koa:
   build: ./production/
   dockerfile: Dockerfile
-  links:
-    - koa-mongodb
   ports:
     - "3210:3210"  # <host port>:<container port>
-  volumes:
+#  volumes:
 #    - ./logs:/home/coinjoin/consolidating-coinjoin/logs
 #    - ./keys:/home/safeuser/keys
-
+  links:
+    - ipfs
   restart: always
