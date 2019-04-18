@@ -33,4 +33,4 @@ should be the same address associated with your memo.cash profile.
 `npm start`
 
 ## License
-MIT
+[MIT](LICENSE.md)
