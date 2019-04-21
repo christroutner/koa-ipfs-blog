@@ -1,3 +1,13 @@
 #!/bin/bash
+ipfs init
+nohup ipfs daemon &
+
+sleep 10
+
+# Add any existing data. Help speed up startup.
+ipfs add -r /home/safeuser/koa-ipfs-blog/ipfs-data
+
+sleep 5
+
 export KOA_ENV=production
 npm start
