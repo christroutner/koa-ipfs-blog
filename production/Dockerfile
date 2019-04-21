@@ -7,21 +7,11 @@
 FROM christroutner/ct-base-ubuntu
 MAINTAINER Chris Troutner <chris.troutner@gmail.com>
 
-#Create the user 'safeuser' and add them to the sudo group.
-#RUN useradd -ms /bin/bash safeuser
-#RUN adduser safeuser sudo
-
-#Set password to 'password' change value below if you want a different password
-#RUN echo safeuser:password | chpasswd
-
 #Set the working directory to be the home directory
 WORKDIR /home/safeuser
 
-#Setup NPM for non-root global install
-#RUN mkdir /home/safeuser/.npm-global
-#RUN chown -R safeuser .npm-global
-#RUN echo "export PATH=~/.npm-global/bin:$PATH" >> /home/safeuser/.profile
-#RUN runuser -l safeuser -c "npm config set prefix '~/.npm-global'"
+# Used for debugging when there are issues.
+COPY dummyapp.js dummyapp.js
 
 # Expose the port the API will be served on.
 EXPOSE 3210
@@ -31,24 +21,31 @@ USER safeuser
 # Prep 'sudo' commands.
 RUN echo 'abcd8765' | sudo -S pwd
 
-# Clone the rest.bitcoin.com repository
+# Install IPFS
+VOLUME /home/safeuser/.ipfs
 WORKDIR /home/safeuser
-RUN git clone https://github.com/christroutner/koa-ipfs-blog
+RUN wget https://dist.ipfs.io/go-ipfs/v0.4.20/go-ipfs_v0.4.20_linux-arm.tar.gz
+RUN tar -xvf go-ipfs_v0.4.20_linux-arm.tar.gz
+WORKDIR /home/safeuser/go-ipfs
+#RUN sudo ./install.sh
+
+# Debug
+CMD ["node", "dummyapp.js"]
+
+# Clone the rest.bitcoin.com repository
+#RUN git clone https://github.com/christroutner/koa-ipfs-blog
 
 # Switch to the desired branch. `master` is usually stable,
 # and `stage` has the most up-to-date changes.
-WORKDIR /home/safeuser/koa-ipfs-blog
-
-# For development: switch to unstable branch
-#RUN git checkout docker
+#WORKDIR /home/safeuser/koa-ipfs-blog
 
 # Install dependencies
-RUN npm install
+#RUN npm install
 
-EXPOSE 3000
+#EXPOSE 3000
 
 # Start the application.
-COPY start-production start-production
-CMD ["./start-production"]
+#COPY start-production start-production
+#CMD ["./start-production"]
 
 #CMD ["npm", "start"]

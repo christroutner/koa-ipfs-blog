@@ -1,7 +1,7 @@
 # Start the testnet server with the command 'docker-compose up -d'
 
-ipfs:
-  image: ipfs/go-ipfs
+#ipfs:
+#  image: ipfs/go-ipfs
 
 
 koa:
@@ -12,6 +12,6 @@ koa:
 #  volumes:
 #    - ./logs:/home/coinjoin/consolidating-coinjoin/logs
 #    - ./keys:/home/safeuser/keys
-  links:
-    - ipfs
+#  links:
+#    - ipfs
   restart: always
