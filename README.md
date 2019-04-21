@@ -46,7 +46,9 @@ daemon is running by executing `ipfs daemon`.
 ## Usage
 There are two forms of using this repository. **Development** is best for hacking
 and development of the server. **Production** packages the repository into a
-Docker container for easy deployment.
+Docker container for easy deployment. It also adds a Tor docker container so
+that your website content can be accessed directly through Tor and the
+[Tor browser](https://www.torproject.org/download/).
 
 
 ### Development
@@ -89,6 +91,8 @@ should be the same address associated with your memo.cash profile.
 and connect to peers, in order to find the initial content it wants to download.
 You can speed up this processes by pre-downloading the initial content into the
 `ipfs-data` directory.
+
+
 
 ## License
 [MIT](LICENSE.md)
