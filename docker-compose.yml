@@ -9,7 +9,9 @@ koa:
   dockerfile: Dockerfile
   ports:
     - "3210:3210"  # <host port>:<container port>
-#  volumes:
+  volumes:
+    - ./ipfs-config:/home/safeuser/.ipfs
+    - ./ipfs-data:/home/safeuser/koa-ipfs-blog/ipfs-data
 #    - ./logs:/home/coinjoin/consolidating-coinjoin/logs
 #    - ./keys:/home/safeuser/keys
 #  links:

@@ -24,28 +24,39 @@ RUN echo 'abcd8765' | sudo -S pwd
 # Install IPFS
 VOLUME /home/safeuser/.ipfs
 WORKDIR /home/safeuser
-RUN wget https://dist.ipfs.io/go-ipfs/v0.4.20/go-ipfs_v0.4.20_linux-arm.tar.gz
-RUN tar -xvf go-ipfs_v0.4.20_linux-arm.tar.gz
+
+# x86
+RUN wget https://dist.ipfs.io/go-ipfs/v0.4.20/go-ipfs_v0.4.20_linux-amd64.tar.gz
+RUN tar -xvf go-ipfs_v0.4.20_linux-amd64.tar.gz
+RUN rm go-ipfs_v0.4.20_linux-amd64.tar.gz
+
+# ARM & Raspberry Pi
+#RUN wget https://dist.ipfs.io/go-ipfs/v0.4.20/go-ipfs_v0.4.20_linux-arm.tar.gz
+#RUN tar -xvf go-ipfs_v0.4.20_linux-arm.tar.gz
+#RUN rm go-ipfs_v0.4.20_linux-arm.tar.gz
+
 WORKDIR /home/safeuser/go-ipfs
-#RUN sudo ./install.sh
+RUN sudo ./install.sh
 
 # Debug
-CMD ["node", "dummyapp.js"]
+#WORKDIR /home/safeuser
+#CMD ["node", "dummyapp.js"]
 
 # Clone the rest.bitcoin.com repository
-#RUN git clone https://github.com/christroutner/koa-ipfs-blog
+WORKDIR /home/safeuser
+RUN git clone https://github.com/christroutner/koa-ipfs-blog
 
 # Switch to the desired branch. `master` is usually stable,
 # and `stage` has the most up-to-date changes.
-#WORKDIR /home/safeuser/koa-ipfs-blog
+WORKDIR /home/safeuser/koa-ipfs-blog
 
 # Install dependencies
-#RUN npm install
+RUN npm install
 
-#EXPOSE 3000
+VOLUME /home/safeuser/koa-ipfs-blog/ipfs-data
 
 # Start the application.
-#COPY start-production start-production
-#CMD ["./start-production"]
+COPY start-production start-production
+CMD ["./start-production"]
 
 #CMD ["npm", "start"]
