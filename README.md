@@ -2,7 +2,9 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/christroutner/koa-ipfs-blog.svg)](https://greenkeeper.io/)
 
-A lightweight web server that serves a blog published to IPFS.
+A light-weight web server that serves any website published to IPFS. It monitors a
+BCH address and automatically updates when new content is announced by that
+address.
 
 - [Here is a non-technical video](https://www.youtube.com/watch?v=RlNVyatwd5M) overview
 of how governments censor content on the internet, and how decentralized publishing
@@ -17,8 +19,9 @@ website in a decentralized, censorship-resistant way in order to leverage the
 This is the server-side software that serves up content to users with a normal
 web browser. It works in conjunction with
 the [memo-push](https://github.com/christroutner/memo-push) publishing
-tool. Memo-push is used to publish content to the IPFS and BCH networks. This
-software is used to retrieve it and serve the content to users. Future versions
+tool. Memo-push is used to announce new content via the BCH network. This
+software is used to retrieve that new content from the IPFS network and serve
+it to users. Future versions
 will also serve content directly to the Tor network as well, via a hidden service.
 
 This project was forked from the [koa-api-boilerplate](https://github.com/christroutner/koa-api-boilerplate)
@@ -70,7 +73,11 @@ Digital Ocean's cloud servers, but should work for any Ubuntnu system.
 - Install Docker Compose too.
 [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04) shows how to do so on a Ubuntu system.
 
-- Customize the [docker-compose.yml](docker-compose.yml) to set things like
+- Add your BCH address
+to [the config file](https://github.com/christroutner/koa-ipfs-blog/blob/master/config/env/common.js#L8). This
+should be the same address associated with your memo.cash profile.
+
+- Customize the [docker-compose.yml](docker-compose.yml) file.
 
 - Build the image: `docker-compose build`
 
@@ -80,7 +87,7 @@ Digital Ocean's cloud servers, but should work for any Ubuntnu system.
 
 **Note:** It takes time for the container to crawl the IPFS peer-to-peer network
 and connect to peers, in order to find the initial content it wants to download.
-You can speed up this processes by pre-downloading the content into the
+You can speed up this processes by pre-downloading the initial content into the
 `ipfs-data` directory.
 
 ## License

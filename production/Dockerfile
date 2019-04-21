@@ -50,6 +50,10 @@ RUN git clone https://github.com/christroutner/koa-ipfs-blog
 # and `stage` has the most up-to-date changes.
 WORKDIR /home/safeuser/koa-ipfs-blog
 
+# Copy the config file, which determins the internal port and the BCH address
+# to monitor.
+COPY common.js config/env/common.js
+
 # Install dependencies
 RUN npm install
 
