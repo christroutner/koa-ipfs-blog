@@ -54,7 +54,7 @@ Docker container for easy deployment.
 - Ensure the IPFS daemon is running.
 
 - Add your BCH address
-to [the config file](https://github.com/christroutner/koa-ipfs-blog/blob/master/config/env/common.js#L8). This
+to [the config file](config/env/common.js). This
 should be the same address associated with your memo.cash profile.
 
 - Start the server: `npm start`
@@ -74,7 +74,7 @@ Digital Ocean's cloud servers, but should work for any Ubuntnu system.
 [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04) shows how to do so on a Ubuntu system.
 
 - Add your BCH address
-to [the config file](https://github.com/christroutner/koa-ipfs-blog/blob/master/config/env/common.js#L8). This
+to [the config file](production/common.js). This
 should be the same address associated with your memo.cash profile.
 
 - Customize the [docker-compose.yml](docker-compose.yml) file.
