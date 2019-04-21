@@ -92,7 +92,8 @@ and connect to peers, in order to find the initial content it wants to download.
 You can speed up this processes by pre-downloading the initial content into the
 `ipfs-data` directory.
 
-
+**Note:** Your website will be able to be accessed directly over the Tor network.
+The .onion address for your website can be found in `keys/koa/hostname`.
 
 ## License
 [MIT](LICENSE.md)
