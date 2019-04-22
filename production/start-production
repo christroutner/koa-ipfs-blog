@@ -1,6 +1,7 @@
 #!/bin/bash
 ipfs init
 nohup ipfs daemon &
+ipfs id
 
 sleep 10
 
