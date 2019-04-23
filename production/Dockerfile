@@ -59,6 +59,9 @@ RUN npm install
 
 VOLUME /home/safeuser/koa-ipfs-blog/ipfs-data
 
+# IPFS port
+EXPOSE 4001
+
 # Start the application.
 COPY start-production start-production
 CMD ["./start-production"]
