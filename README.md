@@ -76,10 +76,11 @@ Digital Ocean's cloud servers, but should work for any Ubuntnu system.
 [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04) shows how to do so on a Ubuntu system.
 
 - Add your BCH address
-to [the config file](production/common.js). This
+to the [production/common.js file](production/common.js). This
 should be the same address associated with your memo.cash profile.
 
-- Customize the [docker-compose.yml](docker-compose.yml) file.
+- Customize the [docker-compose.yml](docker-compose.yml) file to reflect the
+location where volume data should live on the host machine.
 
 - Build the image: `docker-compose build`
 
