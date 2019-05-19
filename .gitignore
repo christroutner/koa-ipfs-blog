@@ -60,10 +60,8 @@ docs
 .nyc_output
 coverage
 ipfs-data/*
-ipfs-config/*
 keys/*
 
 # This should come last. The specific files I *do* want to include.
-!ipfs-config/common.js
 !ipfs-data/README.md
 !keys/README.md
