@@ -25,7 +25,7 @@
   },
   "repository": "christroutner/koa-ipfs-blog",
   "dependencies": {
-    "bitbox-sdk": "^6.1.1",
+    "@chris.troutner/bitbox-js": "^7.0.2",
     "glob": "^7.0.0",
     "kcors": "^2.2.1",
     "koa": "^2.5.0",
