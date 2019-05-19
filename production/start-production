@@ -1,9 +1,12 @@
 #!/bin/bash
 ipfs init
 
-sleep 10
+sleep 5
 
 nohup ipfs daemon &
+
+sleep 5
+
 ipfs id
 
 sleep 10
