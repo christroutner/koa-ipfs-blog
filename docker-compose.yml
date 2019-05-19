@@ -14,7 +14,7 @@ koa:
     - ./ipfs-config:/home/safeuser/.ipfs
     - ./ipfs-data:/home/safeuser/koa-ipfs-blog/ipfs-data
 #    - ./logs:/home/coinjoin/consolidating-coinjoin/logs
-    - ./keys:/home/safeuser/keys
+    #- ./keys:/home/safeuser/keys
 #  links:
 #    - ipfs
   restart: always
