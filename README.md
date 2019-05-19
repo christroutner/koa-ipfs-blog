@@ -96,5 +96,11 @@ You can speed up this processes by pre-downloading the initial content into the
 **Note:** Your website will be able to be accessed directly over the Tor network.
 The .onion address for your website can be found in `keys/koa/hostname`.
 
+## IPFS
+v1.1.2 uploaded to IPFS: 
+- Get it: `ipfs get QmZDPY1iGpMHi8orKXETBLA2Fi8NwbzEU42ZpHAj4YRxrC`
+- Pin it: `ipfs pin add -r QmZDPY1iGpMHi8orKXETBLA2Fi8NwbzEU42ZpHAj4YRxrC`
+
+
 ## License
 [MIT](LICENSE.md)
