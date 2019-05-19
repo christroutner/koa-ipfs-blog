@@ -65,7 +65,5 @@ keys/*
 
 # This should come last. The specific files I *do* want to include.
 !ipfs-config/common.js
-!ipfs-config/README.md
 !ipfs-data/README.md
 !keys/README.md
-!keys/koa/README.md

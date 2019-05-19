@@ -1,1 +1,1 @@
-This directory holds the IPFS configuration info.
+This directory stores IPFS configuration data for the production Docker container.

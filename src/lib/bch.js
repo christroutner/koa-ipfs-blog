@@ -5,11 +5,11 @@
 
 'use strict'
 
-const shell = require('shelljs')
+// const shell = require('shelljs')
 
 const config = require('../../config')
 
-const BITBOXSDK = require('bitbox-sdk')
+const BITBOXSDK = require('@chris.troutner/bitbox-js')
 const BITBOX = new BITBOXSDK()
 
 const ADDR = config.BCHADDR
