@@ -11,7 +11,7 @@ koa:
     - "3210:3210"  # <host port>:<container port>
     - "4001:4001"  # IPFS
   volumes:
-    - ./ipfs-config:/home/safeuser/.ipfs
+#    - ./ipfs-config:/home/safeuser/.ipfs
     - ./ipfs-data:/home/safeuser/koa-ipfs-blog/ipfs-data
 #    - ./logs:/home/coinjoin/consolidating-coinjoin/logs
     #- ./keys:/home/safeuser/keys

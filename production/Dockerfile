@@ -22,7 +22,7 @@ USER safeuser
 RUN echo 'abcd8765' | sudo -S pwd
 
 # Install IPFS
-VOLUME /home/safeuser/.ipfs
+#VOLUME /home/safeuser/.ipfs
 WORKDIR /home/safeuser
 
 # x86

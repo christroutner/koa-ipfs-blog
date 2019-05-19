@@ -47,6 +47,7 @@ class BCH {
     try {
       // Get details associated with this apps BCH address.
       const details = await BITBOX.Address.details(ADDR)
+      console.log(`Retrieving transaction history for BCH address ${ADDR}`)
 
       // Extract the list of transaction IDs involving this address.
       const TXIDs = details.transactions
