@@ -6,7 +6,7 @@ source ~/.profile
 # Initialize the IPFS user if it hasn't been initialized yet.
 ipfs init
 
-sleep 5
+sleep 10
 
 # Start the IPFS daemon.
 nohup ipfs daemon &
