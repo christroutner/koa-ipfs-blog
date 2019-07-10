@@ -10,9 +10,6 @@ MAINTAINER Chris Troutner <chris.troutner@gmail.com>
 #Set the working directory to be the home directory
 WORKDIR /home/safeuser
 
-# Used for debugging when there are issues.
-COPY dummyapp.js dummyapp.js
-
 # Expose the port the API will be served on.
 EXPOSE 3210
 
@@ -35,19 +32,13 @@ RUN rm go-ipfs_v0.4.20_linux-amd64.tar.gz
 #RUN tar -xvf go-ipfs_v0.4.20_linux-arm.tar.gz
 #RUN rm go-ipfs_v0.4.20_linux-arm.tar.gz
 
+# Install IPFS
 WORKDIR /home/safeuser/go-ipfs
 RUN sudo ./install.sh
 
-# Debug
-#WORKDIR /home/safeuser
-#CMD ["node", "dummyapp.js"]
-
-# Clone the rest.bitcoin.com repository
+# Clone the project.
 WORKDIR /home/safeuser
 RUN git clone https://github.com/christroutner/koa-ipfs-blog
-
-# Switch to the desired branch. `master` is usually stable,
-# and `stage` has the most up-to-date changes.
 WORKDIR /home/safeuser/koa-ipfs-blog
 
 # Copy the config file, which determins the internal port and the BCH address
@@ -57,13 +48,20 @@ COPY common.js config/env/common.js
 # Install dependencies
 RUN npm install
 
+# Alter the IPFS to a the mounted volume.
+RUN echo "export IPFS_PATH=/home/safeuser/koa-ipfs-blog/ipfs-data" >> /home/safeuser/.profile
+
+# Declare the path to volumes for persisting data.
 VOLUME /home/safeuser/koa-ipfs-blog/ipfs-data
 
 # IPFS port
 EXPOSE 4001
 
-# Start the application.
-COPY start-production start-production
-CMD ["./start-production"]
+# Debug
+#WORKDIR /home/safeuser
+#COPY dummyapp.js dummyapp.js
+#CMD ["node", "dummyapp.js"]
 
-#CMD ["npm", "start"]
+# Start the application.
+COPY start-production.sh start-production.sh
+CMD ["./start-production.sh"]

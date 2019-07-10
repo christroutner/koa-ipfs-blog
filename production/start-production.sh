@@ -6,12 +6,12 @@ source ~/.profile
 # Initialize the IPFS user if it hasn't been initialized yet.
 ipfs init
 
-sleep 10
+sleep 5
 
 # Start the IPFS daemon.
 nohup ipfs daemon &
 
-sleep 15
+sleep 5
 
 # Display the IPFS peer id and info on the console.
 ipfs id
