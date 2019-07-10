@@ -94,9 +94,9 @@ You can speed up this processes by pre-downloading the initial content into the
 The .onion address for your website can be found in `keys/koa/hostname`.
 
 ## IPFS
-v1.1.2 uploaded to IPFS: 
-- Get it: `ipfs get QmZDPY1iGpMHi8orKXETBLA2Fi8NwbzEU42ZpHAj4YRxrC`
-- Pin it: `ipfs pin add -r QmZDPY1iGpMHi8orKXETBLA2Fi8NwbzEU42ZpHAj4YRxrC`
+v1.1.3 uploaded to IPFS:
+- Get it: `ipfs get QmULHyBTAHQxT9Rnd6n7bfnXCDFdcHtZQKM4Jn1JsSteUG`
+- Pin it: `ipfs pin add -r QmULHyBTAHQxT9Rnd6n7bfnXCDFdcHtZQKM4Jn1JsSteUG`
 
 
 ## License
