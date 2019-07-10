@@ -64,4 +64,4 @@ EXPOSE 4001
 
 # Start the application.
 COPY start-production.sh start-production.sh
-CMD ["./start-production"]
+CMD ["./start-production.sh"]
