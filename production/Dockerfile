@@ -58,10 +58,10 @@ VOLUME /home/safeuser/koa-ipfs-blog/ipfs-data
 EXPOSE 4001
 
 # Debug
-WORKDIR /home/safeuser
-COPY dummyapp.js dummyapp.js
-CMD ["node", "dummyapp.js"]
+#WORKDIR /home/safeuser
+#COPY dummyapp.js dummyapp.js
+#CMD ["node", "dummyapp.js"]
 
 # Start the application.
-#COPY start-production start-production
-#CMD ["./start-production"]
+COPY start-production.sh start-production.sh
+CMD ["./start-production"]
