@@ -1,9 +1,5 @@
 # Start the testnet server with the command 'docker-compose up -d'
 
-#ipfs:
-#  image: ipfs/go-ipfs
-
-
 koa:
   build: ./production/
   dockerfile: Dockerfile
