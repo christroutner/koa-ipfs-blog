@@ -79,9 +79,6 @@ Digital Ocean's cloud servers, but should work for any Ubuntnu system.
 to the [production/common.js file](production/common.js). This
 should be the same address associated with your memo.cash profile.
 
-- Customize the [docker-compose.yml](docker-compose.yml) file to reflect the
-location where volume data should live on the host machine.
-
 - Build the image: `docker-compose build`
 
 - Run the docker container: `docker-compose up`
