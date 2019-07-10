@@ -48,6 +48,10 @@ COPY common.js config/env/common.js
 # Install dependencies
 RUN npm install
 
+# Alter the IPFS to a the mounted volume.
+RUN echo "export IPFS_PATH=/home/safeuser/koa-ipfs-blog/ipfs-data" >> /home/safeuser/.profile
+
+# Declare the path to volumes for persisting data.
 VOLUME /home/safeuser/koa-ipfs-blog/ipfs-data
 
 # IPFS port
