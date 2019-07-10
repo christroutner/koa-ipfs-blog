@@ -11,7 +11,7 @@ sleep 10
 # Start the IPFS daemon.
 nohup ipfs daemon &
 
-sleep 10
+sleep 15
 
 # Display the IPFS peer id and info on the console.
 ipfs id
