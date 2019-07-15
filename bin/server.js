@@ -51,8 +51,8 @@ async function startServer () {
   if (!hash) {
     console.log(`Could not find IPFS hash associated with BCH address ${config.BCHADDR}`)
     console.log(`Publish an IPFS hash using the memo-push tool before running this server.`)
-    console.log(`Exiting`)
-    process.exit()
+    // console.log(`Exiting`)
+    // process.exit()
   }
 
   console.log(`Retrieving and serving this IPFS hash: ${hash}`)

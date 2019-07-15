@@ -1,28 +1,23 @@
 # Start the testnet server with the command 'docker-compose up -d'
 
-koa:
+troutsblog:
   build: ./production/
   dockerfile: Dockerfile
-  container_name: koa-ipfs
+  container_name: troutsblog
   ports:
     - "3210:3210"  # <host port>:<container port>
     - "4001:4001"  # IPFS
   volumes:
-#    - ./ipfs-config:/home/safeuser/.ipfs
     - ./ipfs-data:/home/safeuser/koa-ipfs-blog/ipfs-data
-#    - ./logs:/home/coinjoin/consolidating-coinjoin/logs
-    #- ./keys:/home/safeuser/keys
-#  links:
-#    - ipfs
   restart: always
 
 tor:
   image: goldy/tor-hidden-service
-  container_name: tor
+  container_name: tor-blog
   links:
-    - koa
+    - troutsblog
   environment:
-      KOA_PORTS: 80:3210 # Map port to detected service
+      TROUTSBLOG_PORTS: 80:3210 # Map port to detected service
   volumes:
     - ./keys:/var/lib/tor/hidden_service/
   restart: always
