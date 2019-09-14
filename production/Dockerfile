@@ -40,6 +40,7 @@ RUN sudo ./install.sh
 WORKDIR /home/safeuser
 RUN git clone https://github.com/christroutner/koa-ipfs-blog
 WORKDIR /home/safeuser/koa-ipfs-blog
+RUN git checkout unstable
 
 # Copy the config file, which determins the internal port and the BCH address
 # to monitor.
