@@ -23,9 +23,9 @@ RUN echo 'abcd8765' | sudo -S pwd
 WORKDIR /home/safeuser
 
 # x86
-RUN wget https://dist.ipfs.io/go-ipfs/v0.4.21/go-ipfs_v0.4.21_linux-amd64.tar.gz
-RUN tar -xvf go-ipfs_v0.4.21_linux-amd64.tar.gz
-RUN rm go-ipfs_v0.4.21_linux-amd64.tar.gz
+RUN wget https://dist.ipfs.io/go-ipfs/v0.4.22-rc1/go-ipfs_v0.4.22-rc1_linux-amd64.tar.gz
+RUN tar -xvf go-ipfs_v0.4.22-rc1_linux-amd64.tar.gz
+RUN rm go-ipfs_v0.4.22-rc1_linux-amd64.tar.gz
 
 # ARM & Raspberry Pi
 #RUN wget https://dist.ipfs.io/go-ipfs/v0.4.20/go-ipfs_v0.4.20_linux-arm.tar.gz
@@ -40,6 +40,7 @@ RUN sudo ./install.sh
 WORKDIR /home/safeuser
 RUN git clone https://github.com/christroutner/koa-ipfs-blog
 WORKDIR /home/safeuser/koa-ipfs-blog
+RUN git checkout unstable
 
 # Copy the config file, which determins the internal port and the BCH address
 # to monitor.

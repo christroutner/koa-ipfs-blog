@@ -88,7 +88,9 @@ should be the same address associated with your memo.cash profile.
 **Note:** It takes time for the container to crawl the IPFS peer-to-peer network
 and connect to peers, in order to find the initial content it wants to download.
 You can speed up this processes by pre-downloading the initial content into the
-`ipfs-data` directory.
+`ipfs-data` directory. If working regularly with this software, consider forking
+this [ipfs-stay-connected](https://github.com/christroutner/ipfs-stay-connected)
+app to make uploading of IPFS content faster.
 
 **Note:** Your website will be able to be accessed directly over the Tor network.
 The .onion address for your website can be found in `keys/koa/hostname`.
