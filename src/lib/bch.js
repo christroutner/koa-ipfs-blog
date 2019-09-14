@@ -9,8 +9,7 @@
 
 const config = require('../../config')
 
-const BITBOXSDK = require('@chris.troutner/bitbox-js')
-const BITBOX = new BITBOXSDK()
+const BITBOX = new config.BCHLIB({ restURL: config.MAINNET_REST })
 
 const ADDR = config.BCHADDR
 
