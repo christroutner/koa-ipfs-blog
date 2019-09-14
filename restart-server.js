@@ -15,7 +15,7 @@ const bch = new BCH()
 // Edit the period below, which dictates how often this app checks
 // the BCH blockchain for updates.
 // The time is in milliseconds (ms). 60,000 ms = 1 minute
-const PERIOD = 60000 * 2
+const PERIOD = 60000 * 5
 
 // Used for debugging and iterrogating JS objects.
 const util = require('util')
