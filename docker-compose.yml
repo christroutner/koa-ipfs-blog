@@ -6,7 +6,7 @@ troutsblog:
   container_name: psfoundation.cash
   ports:
     - "3210:3210"  # <host port>:<container port>
-    - "4001:4001"  # IPFS
+    - "4231:4001"  # IPFS
   volumes:
     - ./ipfs-data:/home/safeuser/koa-ipfs-blog/ipfs-data
   restart: always
