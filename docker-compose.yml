@@ -3,7 +3,7 @@
 troutsblog:
   build: ./production/
   dockerfile: Dockerfile
-  container_name: troutsblog
+  container_name: psfoundation.cash
   ports:
     - "3210:3210"  # <host port>:<container port>
     - "4001:4001"  # IPFS
@@ -13,7 +13,7 @@ troutsblog:
 
 tor:
   image: goldy/tor-hidden-service
-  container_name: tor-blog
+  container_name: tor-psfoundation.cash
   links:
     - troutsblog
   environment:

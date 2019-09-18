@@ -5,5 +5,5 @@
 
 module.exports = {
   port: process.env.PORT || 3210,
-  BCHADDR: `bitcoincash:qq34qnz6527rp2szzkull8dzrkmmrnlfuq4ua74spq`
+  BCHADDR: `bitcoincash:qz5sv5ly2r379yqzpz3pwct66q8ph9cgnv3ku0w4qa`
 }
