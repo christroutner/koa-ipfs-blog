@@ -1,4 +1,4 @@
-# koa-ipfs-blog
+# ipfs-web-server
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/christroutner/koa-ipfs-blog.svg)](https://greenkeeper.io/)
 
@@ -12,17 +12,17 @@ tools can be used to circumvent it.
 
 - [Here is a walkthrough video](https://www.youtube.com/watch?v=Ez9YXpu_Chs&t=971s) of
 how to use this repository along with
-the [memo-push](https://github.com/christroutner/memo-push) tool to publish a
-website in a decentralized, censorship-resistant way in order to leverage the
-[Streisand Effect](https://en.wikipedia.org/wiki/Streisand_effect).
+the [memo-push](https://github.com/Permissionless-Software-Foundation/memo-push) tool
+to publish a website in a decentralized, censorship-resistant way in order to
+leverage the [Streisand Effect](https://en.wikipedia.org/wiki/Streisand_effect).
 
 This is the server-side software that serves up content to users with a normal
 web browser. It works in conjunction with
 the [memo-push](https://github.com/christroutner/memo-push) publishing
 tool. Memo-push is used to announce new content via the BCH network. This
 software is used to retrieve that new content from the IPFS network and serve
-it to users. Future versions
-will also serve content directly to the Tor network as well, via a hidden service.
+it to users. It also serves content directly to the Tor network as well, via a
+hidden service.
 
 This project was forked from the [koa-api-boilerplate](https://github.com/christroutner/koa-api-boilerplate)
 
@@ -34,8 +34,8 @@ This project was forked from the [koa-api-boilerplate](https://github.com/christ
 ## Installation
 - Clone and install dependencies:
 ```bash
-git clone https://github.com/christroutner/koa-ipfs-blog
-cd koa-ipfs-blog
+git clone https://github.com/Permissionless-Software-Foundation/ipfs-web-server
+cd ipfs-web-server
 npm install
 ```
 
@@ -57,7 +57,7 @@ that your website content can be accessed directly through Tor and the
 
 - Add your BCH address
 to [the config file](config/env/common.js). This
-should be the same address associated with your memo.cash profile.
+should be the same address associated with your [memo.cash](http://memo.cash) profile.
 
 - Start the server: `npm start`
 
@@ -77,7 +77,7 @@ Digital Ocean's cloud servers, but should work for any Ubuntnu system.
 
 - Add your BCH address
 to the [production/common.js file](production/common.js). This
-should be the same address associated with your memo.cash profile.
+should be the same address associated with your [memo.cash](http://memo.cash) profile.
 
 - Build the image: `docker-compose build`
 
