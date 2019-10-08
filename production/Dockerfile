@@ -24,8 +24,8 @@ WORKDIR /home/safeuser
 
 # x86
 RUN wget https://dist.ipfs.io/go-ipfs/v0.4.22/go-ipfs_v0.4.22_linux-arm64.tar.gz
-RUN tar -xvf go-ipfs_v0.4.22_linux-amd64.tar.gz
-RUN rm go-ipfs_v0.4.22_linux-amd64.tar.gz
+RUN tar -xvf go-ipfs_v0.4.22_linux-arm64.tar.gz
+RUN rm go-ipfs_v0.4.22_linux-arm64.tar.gz
 
 # ARM & Raspberry Pi
 #RUN wget https://dist.ipfs.io/go-ipfs/v0.4.22/go-ipfs_v0.4.22_linux-arm.tar.gz
