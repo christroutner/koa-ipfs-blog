@@ -26,7 +26,7 @@
   "repository": "christroutner/koa-ipfs-blog",
   "dependencies": {
     "@chris.troutner/bch-js": "^1.4.18",
-    "glob": "^7.0.0",
+    "glob": "^7.1.5",
     "kcors": "^2.2.1",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
