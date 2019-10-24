@@ -10,7 +10,9 @@ const logger = require('koa-logger')
 const mount = require('koa-mount')
 const serve = require('koa-static')
 const cors = require('kcors')
-const shell = require('shelljs')
+//const shell = require('shelljs')
+const ipfs = require('../src/lib/ipfs')
+
 
 // App specific libraries.
 const config = require('../config')
@@ -22,7 +24,7 @@ const bch = new BCH()
 const util = require('util')
 util.inspect.defaultOptions = { depth: 1 }
 
-async function startServer () {
+async function startServer() {
   // Create a Koa instance.
   const app = new Koa()
 
@@ -41,7 +43,6 @@ async function startServer () {
   app.use(cors({ origin: '*' }))
 
   // MIDDLEWARE END
-
   // Retrieve hash from BCH network and retrieve data from IPFS.
 
   // Get the latest hash off the BCH network.
@@ -55,21 +56,30 @@ async function startServer () {
     // process.exit()
   }
 
-  console.log(`Retrieving and serving this IPFS hash: ${hash}`)
+  // Start IPFS
+  const ipfs_node = await ipfs.startIPFS();
 
-  // Get the content from the IPFS network.
-  shell.cd(`ipfs-data`)
-  shell.exec(`ipfs get ${hash}`)
-  shell.exec(`ipfs pin add ${hash}`)
+  // For ipfs Ready
+  ipfs_node.on("ready", async () => {
+    console.log(`Retrieving and serving this IPFS hash: ${hash}`)
 
-  // Mount the downloaded directory and serve it.
-  app.use(convert(mount('/', serve(`${process.cwd()}/${hash}`))))
+    //Get the latest content from the IPFS network and Add into ipfs-data.
+    await ipfs.getContent(ipfs_node, hash)
+    //Adds an IPFS object to the pinset and also stores it to the IPFS repo.
+    ipfs.pinAdd(ipfs_node, hash)
 
-  await app.listen(config.port)
-  console.log(`Server started on ${config.port}`)
-  console.log(`Access website at http://localhost:${config.port}/`)
+    // Mount the downloaded directory and serve it.
+    app.use(convert(mount('/', serve(`${process.cwd()}/ipfs-data/${hash}`))))
+    await app.listen(config.port)
+    console.log(`Server started on ${config.port}`)
+    console.log(`Access website at http://localhost:${config.port}/`)
 
-  return app
+    return app
+
+
+
+
+  })
 }
 // startServer()
 

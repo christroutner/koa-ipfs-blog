@@ -27,6 +27,7 @@
   "dependencies": {
     "@chris.troutner/bch-js": "^1.4.20",
     "glob": "^7.0.0",
+    "ipfs": "^0.38.1",
     "kcors": "^2.2.1",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
