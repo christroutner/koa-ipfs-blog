@@ -10,9 +10,8 @@ const logger = require('koa-logger')
 const mount = require('koa-mount')
 const serve = require('koa-static')
 const cors = require('kcors')
-//const shell = require('shelljs')
+// const shell = require('shelljs')
 const ipfs = require('../src/lib/ipfs')
-
 
 // App specific libraries.
 const config = require('../config')
@@ -24,7 +23,7 @@ const bch = new BCH()
 const util = require('util')
 util.inspect.defaultOptions = { depth: 1 }
 
-async function startServer() {
+async function startServer () {
   // Create a Koa instance.
   const app = new Koa()
 
@@ -47,26 +46,36 @@ async function startServer() {
 
   // Get the latest hash off the BCH network.
   const hash = await bch.findHash()
+  // To-Do: Add some retry code here. If it doesn't find the hash on the first try,
+  // it should retry a few times. The npm p-retry library would be good to use here.
 
   // Exit if no hash is found.
   if (!hash) {
-    console.log(`Could not find IPFS hash associated with BCH address ${config.BCHADDR}`)
-    console.log(`Publish an IPFS hash using the memo-push tool before running this server.`)
-    // console.log(`Exiting`)
-    // process.exit()
+    console.log(
+      `Could not find IPFS hash associated with BCH address ${config.BCHADDR}`
+    )
+    console.log(
+      `Publish an IPFS hash using the memo-push tool before running this server.`
+    )
+    console.log(`Exiting`)
+    process.exit()
   }
 
   // Start IPFS
-  const ipfs_node = await ipfs.startIPFS();
+  const ipfsNode = await ipfs.startIPFS()
 
   // For ipfs Ready
-  ipfs_node.on("ready", async () => {
+  ipfsNode.on('ready', async () => {
     console.log(`Retrieving and serving this IPFS hash: ${hash}`)
 
-    //Get the latest content from the IPFS network and Add into ipfs-data.
-    await ipfs.getContent(ipfs_node, hash)
-    //Adds an IPFS object to the pinset and also stores it to the IPFS repo.
-    ipfs.pinAdd(ipfs_node, hash)
+    // Bootstrap connection (for development purposes)
+    // Replace the multiaddr below with the IPFS node running on your local machine.
+    await ipfsNode.swarm.connect('/ip4/127.0.0.1/tcp/4001/ipfs/QmSgDzV1GeTg1tx4wU5WKjxMvT692xvt8FS14JdoDEgFjj')
+
+    // Get the latest content from the IPFS network and Add into ipfs-data.
+    await ipfs.getContent(ipfsNode, hash)
+    // Adds an IPFS object to the pinset and also stores it to the IPFS repo.
+    ipfs.pinAdd(ipfsNode, hash)
 
     // Mount the downloaded directory and serve it.
     app.use(convert(mount('/', serve(`${process.cwd()}/ipfs-data/${hash}`))))
@@ -75,10 +84,6 @@ async function startServer() {
     console.log(`Access website at http://localhost:${config.port}/`)
 
     return app
-
-
-
-
   })
 }
 // startServer()
