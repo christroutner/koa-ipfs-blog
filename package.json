@@ -36,7 +36,7 @@
     "koa-router": "^7.0.1",
     "koa-static": "^5.0.0",
     "shelljs": "^0.8.3",
-    "tree-kill": "^1.2.1"
+    "tree-kill": "^1.2.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
