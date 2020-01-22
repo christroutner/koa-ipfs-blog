@@ -33,7 +33,7 @@
     "koa-convert": "^1.2.0",
     "koa-logger": "^3.1.0",
     "koa-mount": "^4.0.0",
-    "koa-router": "^7.0.1",
+    "koa-router": "^8.0.6",
     "koa-static": "^5.0.0",
     "shelljs": "^0.8.3",
     "tree-kill": "^1.2.1"
